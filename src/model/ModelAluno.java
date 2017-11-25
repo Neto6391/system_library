@@ -19,7 +19,12 @@ public class ModelAluno {
     private String emailAluno;
     private String dataCadastro;
     private String pesquisa;
-
+    
+    
+    public ModelAluno(){
+        
+    }
+    
     public ModelAluno(String nome, String curso, String matricula, String CPFAluno, int periodoCurso, String emailAluno) {
         this.nome = nome;
         this.curso = curso;
@@ -120,6 +125,9 @@ public class ModelAluno {
     }
     
     
-    
+    @Override
+    public String toString() {
+        return this.id_aluno + " - " + this.nome + " - " + this.curso  + " - " + this.matricula + " - " + this.periodoCurso;
+    }
     
 }

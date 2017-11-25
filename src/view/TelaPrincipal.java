@@ -75,11 +75,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonCadLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bt_livro_icon_Resize.jpg"))); // NOI18N
         jButtonCadLivro.setToolTipText("Livros");
+        jButtonCadLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadLivroActionPerformed(evt);
+            }
+        });
         jInternalFrameBemVindo.getContentPane().add(jButtonCadLivro);
         jButtonCadLivro.setBounds(170, 210, 130, 130);
 
         jButtonUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bt_user_icon_Resize.jpg"))); // NOI18N
         jButtonUsuarios.setToolTipText("Usuários");
+        jButtonUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUsuariosActionPerformed(evt);
+            }
+        });
         jInternalFrameBemVindo.getContentPane().add(jButtonUsuarios);
         jButtonUsuarios.setBounds(330, 210, 130, 129);
 
@@ -144,9 +154,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuCadastro.add(jMenuItemCadAluno);
 
         jMenuItemCadLivro.setText("Livros");
+        jMenuItemCadLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadLivroActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(jMenuItemCadLivro);
 
         jMenuItemCadUsuario.setText("Usuários");
+        jMenuItemCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCadUsuarioActionPerformed(evt);
+            }
+        });
         jMenuCadastro.add(jMenuItemCadUsuario);
 
         jMenuBar1.add(jMenuCadastro);
@@ -209,6 +229,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSairMouseClicked
         System.exit(0);
     }//GEN-LAST:event_jMenuSairMouseClicked
+
+    private void jMenuItemCadLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadLivroActionPerformed
+        FormDialogLivro telaCadastroLivro = new FormDialogLivro(this, true);
+        telaCadastroLivro.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCadLivroActionPerformed
+
+    private void jButtonCadLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadLivroActionPerformed
+        FormDialogLivro telaCadastro = new FormDialogLivro(this, true);
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_jButtonCadLivroActionPerformed
+
+    private void jButtonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuariosActionPerformed
+        FormDialogUsuario telaCadastroUsuario = new FormDialogUsuario(this, true);
+        telaCadastroUsuario.setVisible(true);
+    }//GEN-LAST:event_jButtonUsuariosActionPerformed
+
+    private void jMenuItemCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadUsuarioActionPerformed
+        FormDialogUsuario telaCadastroUsuario = new FormDialogUsuario(this, true);
+        telaCadastroUsuario.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCadUsuarioActionPerformed
 
     public void setUsuarioAutenticado(String user) {
          

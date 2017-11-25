@@ -77,6 +77,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
         jTextFieldEmailAluno = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldIdAluno = new javax.swing.JTextField();
+        jButtonFecharTelaAluno = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -87,42 +88,42 @@ public class FormDialogAluno extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Nome do Aluno:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(120, 387, 120, 20);
+        jLabel2.setBounds(120, 400, 120, 20);
         jPanel1.add(jTextFieldNomeAluno);
-        jTextFieldNomeAluno.setBounds(250, 380, 240, 30);
+        jTextFieldNomeAluno.setBounds(250, 380, 240, 40);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Nome do Curso:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(120, 427, 120, 30);
+        jLabel3.setBounds(120, 440, 120, 30);
         jPanel1.add(jTextFieldNomeCurso);
-        jTextFieldNomeCurso.setBounds(250, 430, 240, 30);
+        jTextFieldNomeCurso.setBounds(250, 430, 240, 40);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Nº da Matrícula:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(510, 337, 97, 20);
+        jLabel4.setBounds(520, 340, 97, 20);
         jPanel1.add(jTextFieldNumMatricula);
-        jTextFieldNumMatricula.setBounds(640, 330, 190, 30);
+        jTextFieldNumMatricula.setBounds(640, 330, 190, 40);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("CPF do Aluno:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(510, 377, 100, 30);
+        jLabel5.setBounds(520, 390, 100, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Período do Curso: ");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(120, 467, 115, 30);
+        jLabel6.setBounds(120, 480, 115, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("E-Mail do Aluno:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(500, 430, 130, 30);
+        jLabel7.setBounds(520, 430, 110, 30);
 
         jSpinnerPeriodoCurso.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
         jPanel1.add(jSpinnerPeriodoCurso);
-        jSpinnerPeriodoCurso.setBounds(250, 470, 62, 30);
+        jSpinnerPeriodoCurso.setBounds(250, 480, 62, 40);
 
         jButtonNovoFormAluno.setText("Novo");
         jButtonNovoFormAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +132,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jButtonNovoFormAluno);
-        jButtonNovoFormAluno.setBounds(870, 330, 80, 30);
+        jButtonNovoFormAluno.setBounds(890, 330, 130, 30);
 
         jButtonSalvarFormAluno.setText("Salvar");
         jButtonSalvarFormAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +141,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jButtonSalvarFormAluno);
-        jButtonSalvarFormAluno.setBounds(870, 380, 80, 30);
+        jButtonSalvarFormAluno.setBounds(890, 370, 130, 30);
 
         jButtonExcluirFormAluno.setText("Excluir");
         jButtonExcluirFormAluno.setEnabled(false);
@@ -150,7 +151,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jButtonExcluirFormAluno);
-        jButtonExcluirFormAluno.setBounds(870, 430, 80, 30);
+        jButtonExcluirFormAluno.setBounds(890, 410, 130, 30);
 
         jButtonPesquisarAluno.setText("Pesquisar");
         jButtonPesquisarAluno.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +160,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jButtonPesquisarAluno);
-        jButtonPesquisarAluno.setBounds(610, 40, 90, 30);
+        jButtonPesquisarAluno.setBounds(600, 30, 130, 40);
 
         jTextFieldPesquisarAluno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -167,12 +168,12 @@ public class FormDialogAluno extends javax.swing.JDialog {
             }
         });
         jPanel1.add(jTextFieldPesquisarAluno);
-        jTextFieldPesquisarAluno.setBounds(140, 40, 430, 31);
+        jTextFieldPesquisarAluno.setBounds(150, 30, 430, 40);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Pesquisar Aluno: ");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(10, 50, 120, 20);
+        jLabel8.setBounds(20, 40, 120, 20);
 
         try {
             jFormattedTextFieldCPFAluno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -180,7 +181,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         jPanel1.add(jFormattedTextFieldCPFAluno);
-        jFormattedTextFieldCPFAluno.setBounds(640, 380, 150, 32);
+        jFormattedTextFieldCPFAluno.setBounds(640, 380, 150, 40);
 
         jTableListagemAlunos.setModel(tabelaAlunos);
         jTableListagemAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -193,16 +194,25 @@ public class FormDialogAluno extends javax.swing.JDialog {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(10, 80, 1040, 220);
         jPanel1.add(jTextFieldEmailAluno);
-        jTextFieldEmailAluno.setBounds(640, 430, 200, 30);
+        jTextFieldEmailAluno.setBounds(640, 430, 200, 40);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Código do Aluno:");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(120, 330, 120, 30);
+        jLabel9.setBounds(120, 340, 120, 30);
 
         jTextFieldIdAluno.setEnabled(false);
         jPanel1.add(jTextFieldIdAluno);
-        jTextFieldIdAluno.setBounds(250, 330, 240, 30);
+        jTextFieldIdAluno.setBounds(250, 330, 240, 40);
+
+        jButtonFecharTelaAluno.setText("Fechar Tela");
+        jButtonFecharTelaAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharTelaAlunoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonFecharTelaAluno);
+        jButtonFecharTelaAluno.setBounds(890, 450, 130, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Cadastro de Alunos");
@@ -212,7 +222,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(482, Short.MAX_VALUE)
+                .addGap(20, 482, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(388, 388, 388))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -223,11 +233,11 @@ public class FormDialogAluno extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -317,6 +327,10 @@ public class FormDialogAluno extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jTextFieldPesquisarAlunoKeyReleased
+
+    private void jButtonFecharTelaAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharTelaAlunoActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonFecharTelaAlunoActionPerformed
     
     public ResultSet search(String pesquisa){
         ModelAluno mod = new ModelAluno(pesquisa);
@@ -373,8 +387,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
     public void delete(int id){
         ModelAluno mod = new ModelAluno(id);
         ControllerAluno control = new ControllerAluno(new ConexaoBD(), mod);
-        control.deletarAlunoBD();
-        
+        control.deletarAlunoBD(); 
     }
  
     
@@ -456,6 +469,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonExcluirFormAluno;
+    private javax.swing.JButton jButtonFecharTelaAluno;
     private javax.swing.JButton jButtonNovoFormAluno;
     private javax.swing.JButton jButtonPesquisarAluno;
     private javax.swing.JButton jButtonSalvarFormAluno;

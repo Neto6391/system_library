@@ -10,10 +10,13 @@ package model;
  * @author Neto
  */
 public class ModelUsuario {
+    private int idUsuario;
     private String nome;
     private String senha;
+    
     private String matricula;
     private String cpf_cadastro;
+    private String pesquisa;
 
     //Model Login
     public ModelUsuario(String nome, String senha){
@@ -27,6 +30,22 @@ public class ModelUsuario {
         this.senha = senha;
         this.matricula = matricula;
         this.cpf_cadastro = cpf_cadastro;
+    }
+    
+    public ModelUsuario(int idUsuario, String nome, String senha, String matricula, String cpf_cadastro){
+        this.idUsuario = idUsuario;
+        this.nome = nome;
+        this.senha = senha;
+        this.matricula = matricula;
+        this.cpf_cadastro = cpf_cadastro;
+    }
+    
+    public ModelUsuario(int idUsuario){
+        this.idUsuario = idUsuario;
+    }
+    
+    public ModelUsuario(String pesquisa){
+        this.pesquisa = pesquisa;
     }
     
     
@@ -61,7 +80,25 @@ public class ModelUsuario {
     public void setCpf_cadastro(String cpf_cadastro) {
         this.cpf_cadastro = cpf_cadastro;
     }
+
     
-    //Falta Atributos para o finalizar o CRUD.
+    
+    
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getPesquisaUsuario() {
+        return pesquisa;
+    }
+
+    public void setPesquisaUsuario(String pesquisa) {
+        this.pesquisa = pesquisa;
+    }
     
 }

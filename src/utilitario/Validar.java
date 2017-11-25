@@ -5,7 +5,11 @@
  */
 package utilitario;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -83,6 +87,20 @@ public class Validar {
         return cpfSemMascara;
     }
     
+    
+    public String tirarMascaraData(String dataMascarada){
+        String dataSemMascara = "";
+        for(int i = 0; i < dataMascarada.length(); i++){
+            if(Character.toString(dataMascarada.charAt(i)).equals("/")){
+                continue;
+            }
+            dataSemMascara += Character.toString(dataMascarada.charAt(i));
+        }
+        return dataSemMascara;
+    }
+    
+    
+    
     public ArrayList<Integer> calcularDigitoCPF(ArrayList<Integer> lista, int digito){
         int resultado_pesos = 0;
         
@@ -129,6 +147,48 @@ public class Validar {
         }
     }
     
+    
+    public Boolean validarDataLocacao(String data){
+        String date[] = data.split("/");
+        System.out.println(date[2]);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/mm/dd");
+        df.setLenient(false);
+        try{
+            Date dataForm = df.parse(data);
+            System.out.println(dataForm);
+            if(Integer.valueOf(date[0]) == 2017){
+                System.out.println(dataForm);
+                return false;
+            }
+            //JOptionPane.showMessageDialog(null, "Apenas é permitido Livros lançados a partir da década de 80");
+            return true;
+        } catch(ParseException e){
+            e.printStackTrace();
+            return true;
+        }
+    }
+    
+    
+    
+    
+    public Boolean validarDataLivro(String data){
+        String date[] = data.split("/");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/mm/dd");
+        df.setLenient(false);
+        try{
+            Date dataForm = df.parse(data);
+            if(Integer.valueOf(date[0]) >= 1980 && Integer.valueOf(date[0]) < 2017){
+                
+                return false;
+            }
+            JOptionPane.showMessageDialog(null, "Apenas é permitido Livros lançados a partir da década de 80");
+            return true;
+        } catch(ParseException e){
+            
+            return true;
+        }
+    }
+    
     public Boolean autenticarEmail(String email){
         int resultado = 0;
         if(email.contains("@")){
@@ -153,4 +213,15 @@ public class Validar {
             return true;
         }  
     } 
+    
+    
+    
+    public static void main(String[] args) {
+        Validar v = new Validar();
+        
+        boolean t = v.validarDataLocacao("25/11/2017");
+        System.out.println(t);
+    }
+    
+    
 }

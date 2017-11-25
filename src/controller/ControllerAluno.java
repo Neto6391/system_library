@@ -19,8 +19,8 @@ import model.ModelAluno;
  */
 public class ControllerAluno {
     
-     private ConexaoBD conex;
-     private ModelAluno mod;
+    private ConexaoBD conex;
+    private ModelAluno mod;
     
     public ControllerAluno(ConexaoBD conex, ModelAluno mod){
         this.conex = conex;
@@ -63,7 +63,6 @@ public class ControllerAluno {
         
         return null;
     }
-    
     
     public ResultSet searchAlunoBD(){
          try {
@@ -116,70 +115,5 @@ public class ControllerAluno {
          }
         
     }
-    
-    /*
-    public void Editar(ModelAluno mod){
-        conex.Conexao();
-        
-        try {
-            PreparedStatement pst = conex.con.prepareStatement("UPDATE cadastro_aluno SET nome_aluno = ?, curso = ?, matricula = ?, cpf_aluno = ?, periodo = ?, email_aluno = ? WHERE id_aluno = ?");
-            pst.setString(1, mod.getNome());
-            pst.setString(2, mod.getCurso());
-            pst.setString(3, mod.getMatricula());
-            pst.setString(4, mod.getCPFAluno());
-            pst.setInt(5, mod.getPeriodoCurso());
-            pst.setString(6, mod.getEmailAluno());
-            pst.setInt(7, mod.getId_aluno());
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Dados Atualizados com sucesso!");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao Atualizar os dados\nErro " + ex);
-        }
-        
-        conex.desconecta();
-    }*/
-    
-    /*
-    public void Excluir(ModelAluno mod){
-        conex.Conexao();
-        
-        try {
-            PreparedStatement pst = conex.con.prepareStatement("DELETE FROM cadastro_aluno WHERE id_aluno = ?");
-            pst.setInt(1, mod.getId_aluno());
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Dados Excluídos com Sucesso!");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao Excluir dados\nErro " + ex);
-        }
-        
-        conex.desconecta();
-    }*/
-    
-    /*
-    public  ModelAluno buscaAluno(ModelAluno mod){
-        conex.Conexao();
-        try {
-            conex.executaSql("SELECT * FROM cadastro_aluno WHERE nome_aluno LIKE'%"+ mod.getPesquisa() + "%'");
-            conex.rs.first();
-            mod.setId_aluno(conex.rs.getInt("id_aluno"));
-            mod.setNome(conex.rs.getString("nome_aluno"));
-            mod.setCurso(conex.rs.getNString("curso"));
-            mod.setMatricula(conex.rs.getString("matricula"));
-            mod.setCPFAluno(conex.rs.getString("cpf_aluno"));
-            mod.setPeriodoCurso(conex.rs.getInt("periodo"));
-            mod.setEmailAluno(conex.rs.getString("email_aluno"));
-            mod.setDataCadastro(conex.rs.getString("data_cadastro"));
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Aluno não cadastrado! ");
-            
-        }
-        
-        
-        conex.desconecta();
-        
-        return mod;
-        
-    }*/
     
 }

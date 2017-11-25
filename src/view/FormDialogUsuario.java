@@ -5,6 +5,18 @@
  */
 package view;
 
+import controller.ControllerUsuario;
+import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.ModelTabelaUsuarios;
+import model.ModelUsuario;
+import modelConection.ConexaoBD;
+import utilitario.Validar;
+
 /**
  *
  * @author Neto
@@ -14,8 +26,20 @@ public class FormDialogUsuario extends javax.swing.JDialog {
     /**
      * Creates new form FormDialogUsuario
      */
+    
+    
+    Validar validar = new Validar();
+    private ModelTabelaUsuarios tabelaUsuarios;
+    
     public FormDialogUsuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        
+        try {
+            tabelaUsuarios = new ModelTabelaUsuarios(this.select());
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDialogUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         initComponents();
     }
 
@@ -28,22 +52,367 @@ public class FormDialogUsuario extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jButtonNovoFormUsuario = new javax.swing.JButton();
+        jButtonSalvarFormUsuario = new javax.swing.JButton();
+        jButtonExcluirFormUsuario = new javax.swing.JButton();
+        jButtonPesquisarUsuario = new javax.swing.JButton();
+        jTextFieldPesquisarUsuario = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableListagemUsuarios = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jButtonFecharTelaUsuario = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jTextFieldMatriculaUsuario = new javax.swing.JTextField();
+        jTextFieldNomeUsuario = new javax.swing.JTextField();
+        jPasswordFieldSenhaUsuario = new javax.swing.JPasswordField();
+        jPasswordFieldConfSenhaUsuario = new javax.swing.JPasswordField();
+        jTextFieldIdUsuario = new javax.swing.JTextField();
+        jFormattedTextFieldCPFUsuario = new javax.swing.JFormattedTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setText("Cadastro de Usuários");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setLayout(null);
+
+        jButtonNovoFormUsuario.setText("Novo");
+        jButtonNovoFormUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoFormUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonNovoFormUsuario);
+        jButtonNovoFormUsuario.setBounds(890, 330, 130, 30);
+
+        jButtonSalvarFormUsuario.setText("Salvar");
+        jButtonSalvarFormUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarFormUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonSalvarFormUsuario);
+        jButtonSalvarFormUsuario.setBounds(890, 370, 130, 30);
+
+        jButtonExcluirFormUsuario.setText("Excluir");
+        jButtonExcluirFormUsuario.setEnabled(false);
+        jButtonExcluirFormUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirFormUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonExcluirFormUsuario);
+        jButtonExcluirFormUsuario.setBounds(890, 410, 130, 30);
+
+        jButtonPesquisarUsuario.setText("Pesquisar");
+        jButtonPesquisarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonPesquisarUsuario);
+        jButtonPesquisarUsuario.setBounds(600, 30, 130, 40);
+
+        jTextFieldPesquisarUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldPesquisarUsuarioKeyReleased(evt);
+            }
+        });
+        jPanel1.add(jTextFieldPesquisarUsuario);
+        jTextFieldPesquisarUsuario.setBounds(150, 30, 430, 40);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Pesquisar Usuário: ");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(20, 40, 120, 20);
+
+        jTableListagemUsuarios.setModel(tabelaUsuarios);
+        jTableListagemUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableListagemUsuariosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableListagemUsuarios);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 80, 1040, 220);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Confirmar Senha:");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(90, 520, 120, 30);
+
+        jButtonFecharTelaUsuario.setText("Fechar Tela");
+        jButtonFecharTelaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFecharTelaUsuarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonFecharTelaUsuario);
+        jButtonFecharTelaUsuario.setBounds(890, 450, 130, 30);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel10.setText("Código do Operador:");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(90, 340, 140, 30);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Nome do Usuário:");
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(90, 400, 120, 30);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel12.setText("Senha do Usuário:");
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(90, 460, 120, 30);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("CPF do Operador:");
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(460, 400, 120, 30);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setText("Matrícula do Operador:");
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(460, 340, 150, 30);
+        jPanel1.add(jTextFieldMatriculaUsuario);
+        jTextFieldMatriculaUsuario.setBounds(620, 330, 190, 40);
+        jPanel1.add(jTextFieldNomeUsuario);
+        jTextFieldNomeUsuario.setBounds(240, 400, 190, 40);
+        jPanel1.add(jPasswordFieldSenhaUsuario);
+        jPasswordFieldSenhaUsuario.setBounds(240, 460, 190, 40);
+        jPanel1.add(jPasswordFieldConfSenhaUsuario);
+        jPasswordFieldConfSenhaUsuario.setBounds(240, 510, 190, 40);
+
+        jTextFieldIdUsuario.setEnabled(false);
+        jPanel1.add(jTextFieldIdUsuario);
+        jTextFieldIdUsuario.setBounds(240, 340, 190, 40);
+
+        try {
+            jFormattedTextFieldCPFUsuario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel1.add(jFormattedTextFieldCPFUsuario);
+        jFormattedTextFieldCPFUsuario.setBounds(620, 390, 190, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(482, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(387, 387, 387))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonNovoFormUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoFormUsuarioActionPerformed
+        this.limparCampos();
+    }//GEN-LAST:event_jButtonNovoFormUsuarioActionPerformed
+
+    private void jButtonSalvarFormUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFormUsuarioActionPerformed
+        if(jTextFieldIdUsuario.getText().equals("")){
+            this.insert();
+        } else {
+            this.update();
+        }
+        
+        try {
+            tabelaUsuarios.setResult(select());
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDialogUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonSalvarFormUsuarioActionPerformed
+
+    private void jButtonExcluirFormUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirFormUsuarioActionPerformed
+        int opcao = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que você deseja excluir esse registro?",
+                "Exclusão de Cadastro",
+                JOptionPane.YES_NO_OPTION);
+        if (opcao == JOptionPane.YES_OPTION) {
+            this.delete(Integer.valueOf(jTextFieldIdUsuario.getText()));
+            this.limparCampos();
+            
+            try {
+                tabelaUsuarios.setResult(select());
+            } catch (SQLException ex) {
+                Logger.getLogger(FormDialogUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            jButtonExcluirFormUsuario.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButtonExcluirFormUsuarioActionPerformed
+
+    private void jButtonPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarUsuarioActionPerformed
+        try {
+            tabelaUsuarios.setResult(this.search(jTextFieldPesquisarUsuario.getText()));
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDialogUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonPesquisarUsuarioActionPerformed
+
+    private void jButtonFecharTelaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharTelaUsuarioActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButtonFecharTelaUsuarioActionPerformed
+
+    private void jTextFieldPesquisarUsuarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarUsuarioKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            try {
+                tabelaUsuarios.setResult(this.search(jTextFieldPesquisarUsuario.getText()));
+            } catch (SQLException ex) {
+                Logger.getLogger(FormDialogUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jTextFieldPesquisarUsuarioKeyReleased
+
+    private void jTableListagemUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListagemUsuariosMouseClicked
+        jTextFieldIdUsuario.setText(jTableListagemUsuarios.getValueAt(jTableListagemUsuarios.getSelectedRow(), 0).toString());
+        jTextFieldNomeUsuario.setText(jTableListagemUsuarios.getValueAt(jTableListagemUsuarios.getSelectedRow(), 1).toString());
+        jPasswordFieldSenhaUsuario.setText(jTableListagemUsuarios.getValueAt(jTableListagemUsuarios.getSelectedRow(), 2).toString());
+        jPasswordFieldConfSenhaUsuario.setText(jTableListagemUsuarios.getValueAt(jTableListagemUsuarios.getSelectedRow(), 2).toString());
+        jTextFieldMatriculaUsuario.setText(jTableListagemUsuarios.getValueAt(jTableListagemUsuarios.getSelectedRow(), 3).toString());
+        jFormattedTextFieldCPFUsuario.setText(jTableListagemUsuarios.getValueAt(jTableListagemUsuarios.getSelectedRow(), 4).toString());
+        
+        jButtonExcluirFormUsuario.setEnabled(true);
+    }//GEN-LAST:event_jTableListagemUsuariosMouseClicked
+
+    
+    public void limparCampos(){
+        jTextFieldIdUsuario.setText("");
+        jTextFieldNomeUsuario.setText("");
+        jPasswordFieldSenhaUsuario.setText("");
+        jPasswordFieldConfSenhaUsuario.setText("");
+        jTextFieldMatriculaUsuario.setText("");
+        jFormattedTextFieldCPFUsuario.setText("");
+        
+        jButtonExcluirFormUsuario.setEnabled(false);
+    }
+    
+    
+    public ResultSet search(String pesquisa){
+        ModelUsuario mod = new ModelUsuario(pesquisa);
+        ControllerUsuario control = new ControllerUsuario(new ConexaoBD(), mod);
+        return control.searchUsuarioBD();
+    }
+    
+    public void insert(){
+       this.validar.verificarCampoVazio(jTextFieldNomeUsuario.getText(), "Campo Nome");
+       this.validar.verificarCampoVazio(String.valueOf(jPasswordFieldSenhaUsuario.getPassword()), "Campo Senha");
+       this.validar.verificarCampoVazio(String.valueOf(jPasswordFieldConfSenhaUsuario.getPassword()), "Campo Confirmação Senha");
+       this.validar.verificarCampoVazio(jTextFieldMatriculaUsuario.getText(), "Campo Matricula");
+       if(this.validar.tirarMascaraCPF(jFormattedTextFieldCPFUsuario.getText()).contains(" ")){
+            validar.autenticarCampos("Campo CPF");
+       }
+       
+       if(String.valueOf(jPasswordFieldSenhaUsuario.getPassword()).equals(String.valueOf(jPasswordFieldConfSenhaUsuario.getPassword()))){
+            ModelUsuario mod = new ModelUsuario(jTextFieldNomeUsuario.getText(), String.valueOf(jPasswordFieldSenhaUsuario.getPassword()), jTextFieldMatriculaUsuario.getText(), jFormattedTextFieldCPFUsuario.getText());
+            ControllerUsuario control = new ControllerUsuario(new ConexaoBD(), mod);
+       
+            if(this.autenticarValoresForm(mod)){
+                control.salvarUsuarioBD();
+                this.limparCampos();
+            } else {
+                System.out.println("Erro...");
+            }
+       } else {
+           System.out.println("Senhas não batem...");
+       }
+       
+       
+    }
+    
+    
+    public ResultSet select(){
+        ControllerUsuario control = new ControllerUsuario(new ConexaoBD());
+        return control.selectTabelaUsuarioBD();
+    }
+    
+    public void update(){
+       this.validar.verificarCampoVazio(jTextFieldNomeUsuario.getText(), "Campo Nome");
+       this.validar.verificarCampoVazio(String.valueOf(jPasswordFieldSenhaUsuario.getPassword()), "Campo Senha");
+       this.validar.verificarCampoVazio(String.valueOf(jPasswordFieldConfSenhaUsuario.getPassword()), "Campo Confirmação Senha");
+       this.validar.verificarCampoVazio(jTextFieldMatriculaUsuario.getText(), "Campo Matricula");
+       if(this.validar.tirarMascaraCPF(jFormattedTextFieldCPFUsuario.getText()).contains(" ")){
+            validar.autenticarCampos("Campo CPF");
+       }
+       
+       
+       if(String.valueOf(jPasswordFieldSenhaUsuario.getPassword()).equals(String.valueOf(jPasswordFieldConfSenhaUsuario.getPassword()))){
+            ModelUsuario mod = new ModelUsuario(Integer.valueOf(jTextFieldIdUsuario.getText()), jTextFieldNomeUsuario.getText(), String.valueOf(jPasswordFieldSenhaUsuario.getPassword()), jTextFieldMatriculaUsuario.getText(), jFormattedTextFieldCPFUsuario.getText());
+            ControllerUsuario control = new ControllerUsuario(new ConexaoBD(), mod);
+       
+            if(this.autenticarValoresForm(mod)){
+                 control.atualizarUsuarioBD();
+                 this.limparCampos();
+                 this.jButtonExcluirFormUsuario.setEnabled(false);
+             } else {
+                 System.out.println("Erro...");
+             }
+       } else {
+           System.out.println("Senhas não batem...");
+       }
+       
+       
+       
+       
+    }
+    
+    public void delete(int id){
+        ModelUsuario mod = new ModelUsuario(id);
+        ControllerUsuario control = new ControllerUsuario(new ConexaoBD(), mod);
+        
+        control.deletarUsuarioBD(); 
+    }
+    
+    public Boolean autenticarValoresForm(ModelUsuario mod){
+        int errosForm = 0;
+        
+        if(validar.autenticarNomes(mod.getNome(), "Campo de Nome")){
+            errosForm++;
+        }
+        
+        
+        if(validar.autenticarValoresInteiros(mod.getMatricula(), "Campo de Matricula")){
+            errosForm++;
+        }
+        
+        if(validar.validarCPF(validar.tirarMascaraCPF(mod.getCpf_cadastro()))){
+            errosForm++;
+        }
+        
+        
+        if(errosForm == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -70,6 +439,9 @@ public class FormDialogUsuario extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(FormDialogUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -87,5 +459,28 @@ public class FormDialogUsuario extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonExcluirFormUsuario;
+    private javax.swing.JButton jButtonFecharTelaUsuario;
+    private javax.swing.JButton jButtonNovoFormUsuario;
+    private javax.swing.JButton jButtonPesquisarUsuario;
+    private javax.swing.JButton jButtonSalvarFormUsuario;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCPFUsuario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordFieldConfSenhaUsuario;
+    private javax.swing.JPasswordField jPasswordFieldSenhaUsuario;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableListagemUsuarios;
+    private javax.swing.JTextField jTextFieldIdUsuario;
+    private javax.swing.JTextField jTextFieldMatriculaUsuario;
+    private javax.swing.JTextField jTextFieldNomeUsuario;
+    private javax.swing.JTextField jTextFieldPesquisarUsuario;
     // End of variables declaration//GEN-END:variables
 }
