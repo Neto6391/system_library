@@ -38,7 +38,7 @@ public class ControllerLivro {
             this.conex.getPs().setString(1, mod.getNomeLivro());
             this.conex.getPs().setString(2, mod.getAutor());
             this.conex.getPs().setString(3, mod.getEditora());
-            this.conex.getPs().setString(4, mod.getDataLancLivro());
+            this.conex.getPs().setDate(4, new java.sql.Date(mod.getDate().getTime()));
             this.conex.getPs().setInt(5, mod.getVolume());
             this.conex.getPs().setInt(6, mod.getQuantidadeEstoque());
             
@@ -67,14 +67,13 @@ public class ControllerLivro {
     public ResultSet searchLivroBD(){
          try {
             
-            this.conex.setPs(this.conex.getConexaoBD().prepareStatement("SELECT * FROM cadastro_livro WHERE id_livro like ? or nome_livro like ? or autor like ? or editora like ? or lancamento_livro like ? or volume like ? or quantidade_estoque like ?"));
+            this.conex.setPs(this.conex.getConexaoBD().prepareStatement("SELECT * FROM cadastro_livro WHERE id_livro like ? or nome_livro like ? or autor like ? or editora like ? or volume like ? or quantidade_estoque like ?"));
             this.conex.getPs().setString(1, "%"+ this.mod.getPesquisaLivro() +"%");
             this.conex.getPs().setString(2, "%"+ this.mod.getPesquisaLivro() +"%");
             this.conex.getPs().setString(3, "%"+ this.mod.getPesquisaLivro() +"%");
             this.conex.getPs().setString(4, "%"+ this.mod.getPesquisaLivro() +"%");
             this.conex.getPs().setString(5, "%"+ this.mod.getPesquisaLivro() +"%");
             this.conex.getPs().setString(6, "%"+ this.mod.getPesquisaLivro() +"%");
-            this.conex.getPs().setString(7, "%"+ this.mod.getPesquisaLivro() +"%");
             this.conex.setRs(this.conex.getPs().executeQuery());
             
          } catch (SQLException ex) {

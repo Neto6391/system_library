@@ -95,6 +95,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonLocacaoLivro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/bt_livro_locado_icon_Resize.jpg"))); // NOI18N
         jButtonLocacaoLivro.setToolTipText("Locar Livros");
+        jButtonLocacaoLivro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLocacaoLivroActionPerformed(evt);
+            }
+        });
         jInternalFrameBemVindo.getContentPane().add(jButtonLocacaoLivro);
         jButtonLocacaoLivro.setBounds(600, 200, 130, 129);
 
@@ -172,6 +177,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenuCadastro);
 
         jMenuLocacao.setText("Locação de Livros");
+        jMenuLocacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuLocacaoMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenuLocacao);
 
         jMenuRelatorio.setText("Relatórios");
@@ -210,20 +220,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void jMenuItemTelaBemVindoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTelaBemVindoActionPerformed
         TelaPrincipal telaAutenticada = new TelaPrincipal();
         telaAutenticada.setVisible(true);
-        
-        telaAutenticada.setUsuarioAutenticado(this.jLabelUsuarioAutenticado.getText());
-        jLabelUsuarioAutenticado.setText("");
         dispose();
     }//GEN-LAST:event_jMenuItemTelaBemVindoActionPerformed
 
     private void jMenuItemCadAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadAlunoActionPerformed
-        FormDialogAluno telaCadastro = new FormDialogAluno(this, true);
-        telaCadastro.setVisible(true);
+        FormDialogAluno telaCadastroAluno = new FormDialogAluno(this, true);
+        telaCadastroAluno.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadAlunoActionPerformed
 
     private void jButtonCadAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadAlunoActionPerformed
-        FormDialogAluno telaCadastro = new FormDialogAluno(this, true);
-        telaCadastro.setVisible(true);
+        FormDialogAluno telaCadastroAluno = new FormDialogAluno(this, true);
+        telaCadastroAluno.setVisible(true);
     }//GEN-LAST:event_jButtonCadAlunoActionPerformed
 
     private void jMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSairMouseClicked
@@ -236,8 +243,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCadLivroActionPerformed
 
     private void jButtonCadLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadLivroActionPerformed
-        FormDialogLivro telaCadastro = new FormDialogLivro(this, true);
-        telaCadastro.setVisible(true);
+        FormDialogLivro telaCadastroLivro = new FormDialogLivro(this, true);
+        telaCadastroLivro.setVisible(true);
     }//GEN-LAST:event_jButtonCadLivroActionPerformed
 
     private void jButtonUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuariosActionPerformed
@@ -250,11 +257,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaCadastroUsuario.setVisible(true);
     }//GEN-LAST:event_jMenuItemCadUsuarioActionPerformed
 
-    public void setUsuarioAutenticado(String user) {
-         
-         jLabelUsuarioAutenticado.setText(user);
-        
-    }
+    private void jButtonLocacaoLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLocacaoLivroActionPerformed
+        FormDialogLocacao telaCadastroLocacao = new FormDialogLocacao(this, true);
+        telaCadastroLocacao.setVisible(true);
+    }//GEN-LAST:event_jButtonLocacaoLivroActionPerformed
+
+    private void jMenuLocacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuLocacaoMouseClicked
+        FormDialogLocacao telaCadastroLocacao = new FormDialogLocacao(this, true);
+        telaCadastroLocacao.setVisible(true);
+    }//GEN-LAST:event_jMenuLocacaoMouseClicked
+
 
     
     /**

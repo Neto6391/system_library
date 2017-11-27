@@ -4,16 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/controller/ControllerLivro.java</file>
-            <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/controller/ControllerAluno.java</file>
             <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/view/FormDialogLocacao.java</file>
-            <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/view/TelaAutenticacao.java</file>
-            <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/model/ModelLivro.java</file>
-            <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/view/FormDialogUsuario.java</file>
-            <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/utilitario/Validar.java</file>
             <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/controller/ControllerLocacao.java</file>
+            <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/model/ModelLocacao.java</file>
             <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/view/FormDialogLivro.java</file>
-            <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/model/ModelTabelaLivros.java</file>
-            <file>file:/C:/Users/Neto/Documents/NetBeansProjects/Sistema_Biblioteca/src/view/TelaPrincipal.java</file>
         </group>
     </open-files>
 </project-private>

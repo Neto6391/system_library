@@ -19,25 +19,30 @@ public class ModelLocacao {
     private Date periodoLoc;
     private int codigoAluno;
     private int codigoLivro;
-    private String pesquisa;
-    
+    private int id_aluno;
+    private int id_livro;
+    private Date pesquisaData;
     
     public ModelLocacao(){
         
     }
     
-    public ModelLocacao(String periodoLocacao, int codigoAluno, int codigoLivro){
+    public ModelLocacao(String periodoLocacao, int codigoAluno, int codigoLivro, int id_aluno, int id_livro){
         this.periodoLocacao = periodoLocacao;
         this.codigoAluno = codigoAluno;
         this.codigoLivro = codigoLivro;
+        this.id_aluno = id_aluno;
+        this.id_livro = id_livro;
         this.setPeriodoLoc(this.dataInversa(periodoLocacao));
     }
     
-    public ModelLocacao(int idLocacao, String periodoLocacao, int codigoAluno, int codigoLivro, String dataLocacao){
+    public ModelLocacao(int idLocacao, String periodoLocacao, int codigoAluno, int codigoLivro, int id_aluno, int id_livro){
         this.idLocacao = idLocacao;
         this.periodoLocacao = periodoLocacao;
         this.codigoAluno = codigoAluno;
         this.codigoLivro = codigoLivro;
+        this.id_aluno = id_aluno;
+        this.id_livro = id_livro;
         this.setPeriodoLoc(this.dataInversa(periodoLocacao));
     }
     
@@ -46,8 +51,11 @@ public class ModelLocacao {
     }
     
     public ModelLocacao(String pesquisa){
-        this.pesquisa = pesquisa;
+        this.setPesquisaData(this.dataInversa(pesquisa));
+         
     }
+    
+    
 
     public int getIdLocacao() {
         return idLocacao;
@@ -82,12 +90,18 @@ public class ModelLocacao {
     }
 
     
-    public String getPesquisa() {
-        return pesquisa;
+    public Date getPesquisaData() {
+        return pesquisaData;
     }
 
-    public void setPesquisa(String pesquisa) {
-        this.pesquisa = pesquisa;
+    public void setPesquisaData(String pesquisa) {
+        //this.pesquisa = pesquisa;
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            this.pesquisaData = df.parse(pesquisa);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
     }
     
     private void setPeriodoLoc(String data){
@@ -105,8 +119,28 @@ public class ModelLocacao {
     
     public String dataInversa(String data){
         String dataArray[] = data.split("/");
+        System.out.println(dataArray.length + " " + data);
         return dataArray[2] +"/" + dataArray[1] + "/" + dataArray[0];
     }
+    
+    
+
+    public int getId_aluno() {
+        return id_aluno;
+    }
+
+    public void setId_aluno(int id_aluno) {
+        this.id_aluno = id_aluno;
+    }
+
+    public int getId_livro() {
+        return id_livro;
+    }
+
+    public void setId_livro(int id_livro) {
+        this.id_livro = id_livro;
+    }
+
     
     
     

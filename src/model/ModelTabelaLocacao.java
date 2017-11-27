@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelTabelaLocacao extends AbstractTableModel{
     private static final String[] colNomes = {
-        "Código", "Período Locação","Código Aluno", "Código Livro", "Data Locação" 
+        "Código", "Período Locação","Código Aluno", "Código Livro", "id_aluno", "id_livro" ,"Cadastro Locacao"
     };
     
     private ArrayList<String[]> colecao;
@@ -57,8 +57,9 @@ public class ModelTabelaLocacao extends AbstractTableModel{
                 String.valueOf(rs.getDate("periodo_locacao")),
                 rs.getString("loc_aluno"),
                 rs.getString("loc_livro"),
+                String.valueOf(rs.getInt("id_select_aluno")),
+                String.valueOf(rs.getInt("id_select_livro")),
                 String.valueOf(rs.getDate("data_locacao"))
-                
                 
                 
             };

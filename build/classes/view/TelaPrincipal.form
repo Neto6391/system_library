@@ -39,6 +39,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Loca&#xe7;&#xe3;o de Livros"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenuLocacaoMouseClicked"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenuRelatorio">
           <Properties>
@@ -168,6 +171,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Locar Livros"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLocacaoLivroActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="600" y="200" width="130" height="-1"/>

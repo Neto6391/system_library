@@ -150,14 +150,14 @@ public class Validar {
     
     public Boolean validarDataLocacao(String data){
         String date[] = data.split("/");
-        System.out.println(date[2]);
+        
         SimpleDateFormat df = new SimpleDateFormat("yyyy/mm/dd");
         df.setLenient(false);
         try{
             Date dataForm = df.parse(data);
-            System.out.println(dataForm);
+            
             if(Integer.valueOf(date[0]) == 2017){
-                System.out.println(dataForm);
+                
                 return false;
             }
             //JOptionPane.showMessageDialog(null, "Apenas é permitido Livros lançados a partir da década de 80");

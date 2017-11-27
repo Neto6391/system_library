@@ -21,6 +21,7 @@ public class ModelLivro {
     private String autor;
     private String editora;
     private String dataLancLivro;
+    private Date date;
     private int volume;
     private int quantidadeEstoque;
     private String pesquisaLivro;
@@ -34,7 +35,8 @@ public class ModelLivro {
         this.nomeLivro = nomeLivro;
         this.autor = autor;
         this.editora = editora;
-        this.setdataLancLivro(dataLancLivro);
+        this.setDate(this.dataInversa(dataLancLivro));
+        this.setdataLancLivro(this.dataInversa(dataLancLivro));
         this.volume = volume;
         this.quantidadeEstoque = quantidadeEstoque;
     }
@@ -44,7 +46,8 @@ public class ModelLivro {
         this.nomeLivro = nomeLivro;
         this.autor = autor;
         this.editora = editora;
-        this.setdataLancLivro(dataLancLivro);
+        this.setDate(this.dataInversa(dataLancLivro));
+        this.setdataLancLivro(this.dataInversa(dataLancLivro));
         this.volume = volume;
         this.quantidadeEstoque = quantidadeEstoque;
     }
@@ -58,7 +61,7 @@ public class ModelLivro {
     }
     
     public void setdataLancLivro(String data){
-        this.dataLancLivro = this.dataInversa(data);
+        this.dataLancLivro = data;
         
     }
     
@@ -132,6 +135,23 @@ public class ModelLivro {
         String dataArray[] = this.getDataLancLivro().split("/");
         return dataArray[0] + "/" + dataArray[1] + "/" + dataArray[2];
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(String data) {
+        
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+        try {
+            this.date = df.parse(data);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    
+    
     
     @Override
     public String toString() {

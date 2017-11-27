@@ -7,10 +7,15 @@ package view;
 
 import controller.ControllerLocacao;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.ModelAluno;
 import model.ModelLivro;
 import model.ModelLocacao;
+import model.ModelTabelaLocacao;
 import modelConection.ConexaoBD;
 import utilitario.Validar;
 
@@ -27,11 +32,16 @@ public class FormDialogLocacao extends javax.swing.JDialog {
      */
     
     Validar validar = new Validar();
+    private ModelTabelaLocacao tabelaLocacoes;
     
     public FormDialogLocacao(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
-        
+        try {
+            tabelaLocacoes = new ModelTabelaLocacao(this.select());
+        } catch (SQLException ex) {
+            Logger.getLogger(FormDialogLocacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         initComponents();
         
@@ -50,9 +60,9 @@ public class FormDialogLocacao extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButtonNovoFormLivro = new javax.swing.JButton();
-        jButtonSalvarFormLivro = new javax.swing.JButton();
-        jButtonExcluirFormLivro = new javax.swing.JButton();
+        jButtonNovoFormLocacao = new javax.swing.JButton();
+        jButtonSalvarFormLocacao = new javax.swing.JButton();
+        jButtonExcluirFormLocacao = new javax.swing.JButton();
         jButtonPesquisarLocacao = new javax.swing.JButton();
         jTextFieldPesquisarLocacao = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -76,30 +86,40 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(null);
 
-        jButtonNovoFormLivro.setText("Novo");
-        jButtonNovoFormLivro.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNovoFormLocacao.setText("Novo");
+        jButtonNovoFormLocacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNovoFormLivroActionPerformed(evt);
+                jButtonNovoFormLocacaoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonNovoFormLivro);
-        jButtonNovoFormLivro.setBounds(880, 320, 130, 30);
+        jPanel1.add(jButtonNovoFormLocacao);
+        jButtonNovoFormLocacao.setBounds(880, 320, 130, 30);
 
-        jButtonSalvarFormLivro.setText("Salvar");
-        jButtonSalvarFormLivro.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSalvarFormLocacao.setText("Salvar");
+        jButtonSalvarFormLocacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvarFormLivroActionPerformed(evt);
+                jButtonSalvarFormLocacaoActionPerformed(evt);
             }
         });
-        jPanel1.add(jButtonSalvarFormLivro);
-        jButtonSalvarFormLivro.setBounds(880, 360, 130, 30);
+        jPanel1.add(jButtonSalvarFormLocacao);
+        jButtonSalvarFormLocacao.setBounds(880, 360, 130, 30);
 
-        jButtonExcluirFormLivro.setText("Excluir");
-        jButtonExcluirFormLivro.setEnabled(false);
-        jPanel1.add(jButtonExcluirFormLivro);
-        jButtonExcluirFormLivro.setBounds(880, 400, 130, 30);
+        jButtonExcluirFormLocacao.setText("Excluir");
+        jButtonExcluirFormLocacao.setEnabled(false);
+        jButtonExcluirFormLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirFormLocacaoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonExcluirFormLocacao);
+        jButtonExcluirFormLocacao.setBounds(880, 400, 130, 30);
 
         jButtonPesquisarLocacao.setText("Pesquisar");
+        jButtonPesquisarLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarLocacaoActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButtonPesquisarLocacao);
         jButtonPesquisarLocacao.setBounds(620, 30, 130, 40);
         jPanel1.add(jTextFieldPesquisarLocacao);
@@ -110,14 +130,7 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         jPanel1.add(jLabel8);
         jLabel8.setBounds(20, 40, 130, 20);
 
-        jTableListagemLocacoes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
+        jTableListagemLocacoes.setModel(tabelaLocacoes);
         jTableListagemLocacoes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableListagemLocacoesMouseClicked(evt);
@@ -202,6 +215,7 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -211,49 +225,149 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         jComboBoxLivros.setSelectedIndex(0);
         jFormattedTextFieldPeriodoLocacao.setText("00/00/0000");
         
-        jButtonExcluirFormLivro.setEnabled(false);
+        jButtonExcluirFormLocacao.setEnabled(false);
     }
     
     private void jTableListagemLocacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListagemLocacoesMouseClicked
         jTextFieldIdLocacao.setText(jTableListagemLocacoes.getValueAt(jTableListagemLocacoes.getSelectedRow(), 0).toString());
-        
-
-        jButtonExcluirFormLivro.setEnabled(true);
+        jComboBoxAlunos.setSelectedIndex(Integer.valueOf(jTableListagemLocacoes.getValueAt(jTableListagemLocacoes.getSelectedRow(), 4).toString()));
+        jComboBoxLivros.setSelectedIndex(Integer.valueOf(jTableListagemLocacoes.getValueAt(jTableListagemLocacoes.getSelectedRow(), 5).toString()));
+        jFormattedTextFieldPeriodoLocacao.setText(formatarDataTabela(jTableListagemLocacoes.getValueAt(jTableListagemLocacoes.getSelectedRow(), 1).toString()));
+        //System.out.println(jTableListagemLocacoes.getValueAt(jTableListagemLocacoes.getSelectedRow(), 1).toString());
+        jButtonExcluirFormLocacao.setEnabled(true);
     }//GEN-LAST:event_jTableListagemLocacoesMouseClicked
 
     private void jButtonFecharTelaLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharTelaLocacaoActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonFecharTelaLocacaoActionPerformed
 
-    private void jButtonSalvarFormLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFormLivroActionPerformed
+    private void jButtonSalvarFormLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarFormLocacaoActionPerformed
+        
+        if(jTextFieldIdLocacao.getText().equals("")){
+            this.insert();
+
+        } else {
+            this.update();
+        }
+
+        try {
+            tabelaLocacoes.setResult(select());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonSalvarFormLocacaoActionPerformed
+
+    private void jButtonNovoFormLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoFormLocacaoActionPerformed
+        this.limparCampos();
+        
+        try {
+            tabelaLocacoes.setResult(select());
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_jButtonNovoFormLocacaoActionPerformed
+
+    private void jButtonExcluirFormLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirFormLocacaoActionPerformed
+        int opcao = JOptionPane.showConfirmDialog(this,
+            "Tem certeza que você deseja excluir esse registro?",
+            "Exclusão de Cadastro",
+            JOptionPane.YES_NO_OPTION);
+        if (opcao == JOptionPane.YES_OPTION) {
+            this.delete(Integer.valueOf(jTextFieldIdLocacao.getText()));
+            this.limparCampos();
+            
+            try {
+                tabelaLocacoes.setResult(select());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            
+            jButtonExcluirFormLocacao.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButtonExcluirFormLocacaoActionPerformed
+
+    private void jButtonPesquisarLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarLocacaoActionPerformed
+        String tamanhoStringData[] = jTextFieldPesquisarLocacao.getText().split("/");
+        if(tamanhoStringData.length == 3){
+            try {
+                tabelaLocacoes.setResult(this.search(jTextFieldPesquisarLocacao.getText()));
+            } catch (SQLException ex) {
+                Logger.getLogger(FormDialogAluno.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Somente Datas com a seguinte formatação DD/MM/AAAA");
+        }
+        
+    }//GEN-LAST:event_jButtonPesquisarLocacaoActionPerformed
+    
+    public ResultSet select(){
+        ControllerLocacao control = new ControllerLocacao(new ConexaoBD());
+        return control.selectTabelaLocacaoBD();
+    }
+    
+    
+    public void insert(){
         
         if(jComboBoxAlunos.getSelectedIndex() > 0 && jComboBoxLivros.getSelectedIndex() > 0){
             if(this.validar.tirarMascaraData(jFormattedTextFieldPeriodoLocacao.getText()).contains(" ")){
                 validar.autenticarCampos("Campo Data Lancamento");
             }
             
-            ModelLocacao mod = new ModelLocacao(jFormattedTextFieldPeriodoLocacao.getText(), ((ModelAluno)jComboBoxAlunos.getSelectedItem()).getId_aluno(), ((ModelLivro)jComboBoxLivros.getSelectedItem()).getIdLivro());
-            System.out.println(mod.getPeriodoLocacao() + " " + mod.getCodigoAluno() + " " + mod.getCodigoLivro());
+            ModelLocacao mod = new ModelLocacao(jFormattedTextFieldPeriodoLocacao.getText(), ((ModelAluno)jComboBoxAlunos.getSelectedItem()).getId_aluno(), ((ModelLivro)jComboBoxLivros.getSelectedItem()).getIdLivro(), jComboBoxAlunos.getSelectedIndex(), jComboBoxLivros.getSelectedIndex());
+            
             ControllerLocacao control = new ControllerLocacao(new ConexaoBD(), mod);
-            if(this.autenticarValoresForm(mod)){
+            if(this.autenticarValoresForm(mod) && mod.getPeriodoLoc().compareTo(new Date()) > 0){
                 control.salvarLocacaoBD();
                 this.limparCampos();
                 
             } else {
-                System.out.println("Erro2");
+                if(mod.getPeriodoLoc().compareTo(new Date()) < 0){
+                    JOptionPane.showMessageDialog(null, "Data tem que ser após Data Atual");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro");
+                }
+                
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Erro ao Enviar dados, tanto Aluno e Livro devem que ser selecionados ou tanto Aluno e Livro, devem ser escolhida a segunda opção ignorando a primeira!");
+            JOptionPane.showMessageDialog(null, "Erro ao Enviar dados, tanto Aluno e Livro devem serem selecionados ou tanto Aluno e Livro, devem ser escolhida a segunda opção ignorando a primeira!");
         }
-        
-        
-        
-        
-    }//GEN-LAST:event_jButtonSalvarFormLivroActionPerformed
-
-    private void jButtonNovoFormLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoFormLivroActionPerformed
-        this.limparCampos();
-    }//GEN-LAST:event_jButtonNovoFormLivroActionPerformed
+    }
+    
+    public void update(){
+        if(jComboBoxAlunos.getSelectedIndex() > 0 && jComboBoxLivros.getSelectedIndex() > 0){
+            if(this.validar.tirarMascaraData(jFormattedTextFieldPeriodoLocacao.getText()).contains(" ")){
+                validar.autenticarCampos("Campo Data Lancamento");
+            }
+            
+            ModelLocacao mod = new ModelLocacao(Integer.parseInt(jTextFieldIdLocacao.getText()), jFormattedTextFieldPeriodoLocacao.getText(), ((ModelAluno)jComboBoxAlunos.getSelectedItem()).getId_aluno(), ((ModelLivro)jComboBoxLivros.getSelectedItem()).getIdLivro(), jComboBoxAlunos.getSelectedIndex(), jComboBoxLivros.getSelectedIndex());
+            System.out.println(mod.getPeriodoLocacao() + " " + mod.getCodigoAluno() + " " + mod.getCodigoLivro());
+            ControllerLocacao control = new ControllerLocacao(new ConexaoBD(), mod);
+            if(this.autenticarValoresForm(mod) && mod.getPeriodoLoc().compareTo(new Date()) > 0){
+                control.atualizarLocacaoBD();
+                this.limparCampos();
+                
+            } else {
+                if(mod.getPeriodoLoc().compareTo(new Date()) < 0){
+                    JOptionPane.showMessageDialog(null, "Data tem que ser após Data Atual");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Erro");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Erro ao Enviar dados, tanto Aluno e Livro devem serem selecionados ou tanto Aluno e Livro, devem ser escolhida a segunda opção ignorando a primeira!");
+        }
+    }
+    
+    public void delete(int id){
+        ModelLocacao mod = new ModelLocacao(id);
+        ControllerLocacao control = new ControllerLocacao(new ConexaoBD(), mod);
+        control.deletarLocacaoBD(); 
+    }
     
     
     public ResultSet selectAluno(){
@@ -266,7 +380,20 @@ public class FormDialogLocacao extends javax.swing.JDialog {
     
     public ResultSet selectLivro(){
         ControllerLocacao control = new ControllerLocacao(new ConexaoBD());
+        
         return control.selectLivro(this.jComboBoxLivros);
+    }
+    
+    public ResultSet search(String pesquisa){
+        ModelLocacao mod = new ModelLocacao(pesquisa);
+        ControllerLocacao control = new ControllerLocacao(new ConexaoBD(), mod);
+        return control.searchLocacaoBD();
+    }
+    
+    
+    public String formatarDataTabela(String data){
+        String date[] = data.split("-");
+        return date[2] + "/" + date[1] + "/" + date[0];
     }
     
     
@@ -275,8 +402,6 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         if(validar.validarDataLocacao(mod.dataInversa(mod.getPeriodoLocacao()))){
             return false;
         }
-                 
-        
         return true;
     }
     
@@ -325,11 +450,11 @@ public class FormDialogLocacao extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonExcluirFormLivro;
+    private javax.swing.JButton jButtonExcluirFormLocacao;
     private javax.swing.JButton jButtonFecharTelaLocacao;
-    private javax.swing.JButton jButtonNovoFormLivro;
+    private javax.swing.JButton jButtonNovoFormLocacao;
     private javax.swing.JButton jButtonPesquisarLocacao;
-    private javax.swing.JButton jButtonSalvarFormLivro;
+    private javax.swing.JButton jButtonSalvarFormLocacao;
     private javax.swing.JComboBox<String> jComboBoxAlunos;
     private javax.swing.JComboBox<String> jComboBoxLivros;
     private javax.swing.JFormattedTextField jFormattedTextFieldPeriodoLocacao;
