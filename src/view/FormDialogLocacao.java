@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.ControllerLocacao;
@@ -19,18 +14,8 @@ import model.ModelTabelaLocacao;
 import modelConection.ConexaoBD;
 import utilitario.Validar;
 
-
-
-/**
- *
- * @author Neto
- */
 public class FormDialogLocacao extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FormDialogLocacao
-     */
-    
     Validar validar = new Validar();
     private ModelTabelaLocacao tabelaLocacoes;
     
@@ -217,7 +202,6 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
     
     public void limparCampos(){
         jTextFieldIdLocacao.setText("");
@@ -255,10 +239,6 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
-        
-        
-        
     }//GEN-LAST:event_jButtonSalvarFormLocacaoActionPerformed
 
     private void jButtonNovoFormLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoFormLocacaoActionPerformed
@@ -269,7 +249,6 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
     }//GEN-LAST:event_jButtonNovoFormLocacaoActionPerformed
 
     private void jButtonExcluirFormLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirFormLocacaoActionPerformed
@@ -302,7 +281,6 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(null, "Somente Datas com a seguinte formatação DD/MM/AAAA");
         }
-        
     }//GEN-LAST:event_jButtonPesquisarLocacaoActionPerformed
     
     public ResultSet select(){
@@ -368,8 +346,7 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         ControllerLocacao control = new ControllerLocacao(new ConexaoBD(), mod);
         control.deletarLocacaoBD(); 
     }
-    
-    
+        
     public ResultSet selectAluno(){
         ControllerLocacao control = new ControllerLocacao(new ConexaoBD());
         
@@ -389,14 +366,12 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         ControllerLocacao control = new ControllerLocacao(new ConexaoBD(), mod);
         return control.searchLocacaoBD();
     }
-    
-    
+        
     public String formatarDataTabela(String data){
         String date[] = data.split("-");
         return date[2] + "/" + date[1] + "/" + date[0];
     }
-    
-    
+        
     public Boolean autenticarValoresForm(ModelLocacao mod){
                 
         if(validar.validarDataLocacao(mod.dataInversa(mod.getPeriodoLocacao()))){
@@ -404,12 +379,7 @@ public class FormDialogLocacao extends javax.swing.JDialog {
         }
         return true;
     }
-    
-    
-    
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

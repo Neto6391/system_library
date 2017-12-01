@@ -1,12 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
-
-
-
 
 import controller.ControllerUsuario;
 import java.awt.Image;
@@ -17,13 +9,6 @@ import javax.swing.JOptionPane;
 import model.ModelUsuario;
 import modelConection.ConexaoBD;
 
-
-
-
-/**
- *
- * @author Neto
- */
 public class TelaAutenticacao extends javax.swing.JFrame {
     
     /**
@@ -130,7 +115,6 @@ public class TelaAutenticacao extends javax.swing.JFrame {
             login();
         }
     }//GEN-LAST:event_jPasswordFieldSenhaKeyReleased
-
     
     /**
      * @param imagem the command load the path of image
@@ -143,8 +127,7 @@ public class TelaAutenticacao extends javax.swing.JFrame {
         this.repaint();
     }
     
-    
-    public void login(){
+        public void login(){
         ModelUsuario mod = new ModelUsuario(jTextFieldUsuario.getText(), String.valueOf(jPasswordFieldSenha.getPassword()));
         ControllerUsuario control = new ControllerUsuario();
         
@@ -195,8 +178,7 @@ public class TelaAutenticacao extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAcessar;
