@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.ControllerLivro;
@@ -17,16 +12,8 @@ import model.ModelTabelaLivros;
 import modelConection.ConexaoBD;
 import utilitario.Validar;
 
-/**
- *
- * @author Neto
- */
 public class FormDialogLivro extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FormDialogLivro
-     */
-    
     Validar validar = new Validar();
     private ModelTabelaLivros tabelaLivros;
     
@@ -317,7 +304,6 @@ public class FormDialogLivro extends javax.swing.JDialog {
     private void jButtonFecharTelaLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharTelaLivroActionPerformed
         dispose();
     }//GEN-LAST:event_jButtonFecharTelaLivroActionPerformed
-
     
     public void limparCampos(){
         jTextFieldIdLivro.setText("");
@@ -330,15 +316,12 @@ public class FormDialogLivro extends javax.swing.JDialog {
         jTextFieldPesquisarLivro.setText("");
         jButtonExcluirFormLivro.setEnabled(false);
     }
-    
-    
+        
     public ResultSet search(String pesquisa){
         ModelLivro mod = new ModelLivro(pesquisa);
         ControllerLivro control = new ControllerLivro(new ConexaoBD(), mod);
         return control.searchLivroBD();
     }
-    
-    
     
     public void insert(){
         this.validar.verificarCampoVazio(jTextFieldNomeLivro.getText(), "Campo Nome Livro");
@@ -358,7 +341,6 @@ public class FormDialogLivro extends javax.swing.JDialog {
         } else {
             System.out.println("Erro...");
         }
-        
     }
     
     public ResultSet select(){
@@ -416,9 +398,7 @@ public class FormDialogLivro extends javax.swing.JDialog {
         if(validar.validarDataLivro(mod.getDataLancLivro())){
             errosForm++;
         }
-            
-        
-            
+          
         if(errosForm == 0){
             return true;
         } else {
@@ -426,8 +406,7 @@ public class FormDialogLivro extends javax.swing.JDialog {
         }
         
     }
-    
-    
+        
     /**
      * @param args the command line arguments
      */

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.ControllerAluno;
@@ -17,22 +12,11 @@ import model.ModelTabelaAlunos;
 import modelConection.ConexaoBD;
 import utilitario.Validar;
 
-
-/**
- *
- * @author Neto
- */
 public class FormDialogAluno extends javax.swing.JDialog {
 
-    /**
-     * Creates new form FormAluno2
-     */
-    
     Validar validar = new Validar();
     private ModelTabelaAlunos tabelaAlunos;
-    
-    
-    
+        
     public FormDialogAluno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         
@@ -389,8 +373,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
         ControllerAluno control = new ControllerAluno(new ConexaoBD(), mod);
         control.deletarAlunoBD(); 
     }
- 
-    
+     
     public Boolean autenticarValoresForm(ModelAluno mod){
         int errosForm = 0;
         
@@ -420,8 +403,7 @@ public class FormDialogAluno extends javax.swing.JDialog {
             return false;
         }
     }
-    
-    
+        
     /**
      * @param args the command line arguments
      */

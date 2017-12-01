@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.ControllerUsuario;
@@ -17,17 +12,8 @@ import model.ModelUsuario;
 import modelConection.ConexaoBD;
 import utilitario.Validar;
 
-/**
- *
- * @author Neto
- */
 public class FormDialogUsuario extends javax.swing.JDialog {
-
-    /**
-     * Creates new form FormDialogUsuario
-     */
-    
-    
+  
     Validar validar = new Validar();
     private ModelTabelaUsuarios tabelaUsuarios;
     
@@ -300,7 +286,6 @@ public class FormDialogUsuario extends javax.swing.JDialog {
         
         jButtonExcluirFormUsuario.setEnabled(true);
     }//GEN-LAST:event_jTableListagemUsuariosMouseClicked
-
     
     public void limparCampos(){
         jTextFieldIdUsuario.setText("");
@@ -312,8 +297,7 @@ public class FormDialogUsuario extends javax.swing.JDialog {
         
         jButtonExcluirFormUsuario.setEnabled(false);
     }
-    
-    
+        
     public ResultSet search(String pesquisa){
         ModelUsuario mod = new ModelUsuario(pesquisa);
         ControllerUsuario control = new ControllerUsuario(new ConexaoBD(), mod);
@@ -341,12 +325,9 @@ public class FormDialogUsuario extends javax.swing.JDialog {
             }
        } else {
            System.out.println("Senhas não batem...");
-       }
-       
-       
+       }    
     }
-    
-    
+        
     public ResultSet select(){
         ControllerUsuario control = new ControllerUsuario(new ConexaoBD());
         return control.selectTabelaUsuarioBD();
@@ -360,8 +341,7 @@ public class FormDialogUsuario extends javax.swing.JDialog {
        if(this.validar.tirarMascaraCPF(jFormattedTextFieldCPFUsuario.getText()).contains(" ")){
             validar.autenticarCampos("Campo CPF");
        }
-       
-       
+              
        if(String.valueOf(jPasswordFieldSenhaUsuario.getPassword()).equals(String.valueOf(jPasswordFieldConfSenhaUsuario.getPassword()))){
             ModelUsuario mod = new ModelUsuario(Integer.valueOf(jTextFieldIdUsuario.getText()), jTextFieldNomeUsuario.getText(), String.valueOf(jPasswordFieldSenhaUsuario.getPassword()), jTextFieldMatriculaUsuario.getText(), jFormattedTextFieldCPFUsuario.getText());
             ControllerUsuario control = new ControllerUsuario(new ConexaoBD(), mod);
@@ -376,10 +356,6 @@ public class FormDialogUsuario extends javax.swing.JDialog {
        } else {
            System.out.println("Senhas não batem...");
        }
-       
-       
-       
-       
     }
     
     public void delete(int id){
@@ -395,8 +371,7 @@ public class FormDialogUsuario extends javax.swing.JDialog {
         if(validar.autenticarNomes(mod.getNome(), "Campo de Nome")){
             errosForm++;
         }
-        
-        
+                
         if(validar.autenticarValoresInteiros(mod.getMatricula(), "Campo de Matricula")){
             errosForm++;
         }
@@ -404,8 +379,7 @@ public class FormDialogUsuario extends javax.swing.JDialog {
         if(validar.validarCPF(validar.tirarMascaraCPF(mod.getCpf_cadastro()))){
             errosForm++;
         }
-        
-        
+                
         if(errosForm == 0){
             return true;
         } else {
